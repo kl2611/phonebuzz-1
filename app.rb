@@ -11,9 +11,7 @@ get '/hello' do
 end
 
 get '/hello/phonebuzz' do
-
   number = params['Digits'].to_i
-  number = 25
   redirect '/hello' unless (number >= 1 && number <= 99)
   Twilio::TwiML::Response.new do |r|
     number.times do |i|
