@@ -6,7 +6,7 @@ require 'twilio-ruby'
 
 get '/' do
     Twilio::TwiML::Response.new do |r|
-        r.Gather :finishOnKey => "#", :action => "/hello/phonebuzz", :method => 'get' do |g|
+        r.Gather :finishOnKey => "#", :action => "/phonebuzz", :method => 'get' do |g|
             g.Say 'Enter a number from 1 to 99 followed by the pound sign'
         end
     end.text
