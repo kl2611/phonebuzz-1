@@ -11,19 +11,19 @@ get '/hello' do
 end
 
 get '/hello/phonebuzz' do
-  number = params['Digits'].to_i
-  redirect '/hello' unless (number >= 1 && number <= 99)
+  input = params['Digits'].to_i
+  redirect '/hello' unless (input >= 1 && input <= 99)
   Twilio::TwiML::Response.new do |r|
-    number.times do |i|
-      curr_num = i + 1
-      if curr_num % 15 == 0
+    input.times do |i|
+      count = i + 1
+      if count % 15 == 0
         r.Say "fizz buzz"
-      elsif curr_num % 5 == 0
+      elsif count % 5 == 0
         r.Say "buzz"
-      elsif curr_num % 3 == 0
+      elsif count % 3 == 0
         r.Say "fizz"
       else
-        r.Say "#{curr_num}"
+        r.Say "#{count}"
       end
     end
   end.text
