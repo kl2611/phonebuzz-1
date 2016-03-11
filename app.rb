@@ -20,16 +20,18 @@ end
 
 get '/hello/phonebuzz' do
     input = params['Digits'].to_i
+    redirect '/hello' unless (number >= 1 && number <= 999)
     Twilio::TwiML::Response.new do |r|
         input.times do |i|
-            if i % 15 == 0
+            current = i +
+            if current % 15 == 0
                 r.Say = "fizzbuzz"
-            elsif i % 3 == 0
+            elsif current % 3 == 0
                 r.Say "fizz"
-            elsif i % 5 == 0
+            elsif current % 5 == 0
                 r.Say "buzz"
             else
-                r.Say "#{i}"
+                r.Say "#{current}"
             end
         end
     end.text
