@@ -14,7 +14,7 @@ end
 
 get '/phonebuzz' do
   input = params['Digits'].to_i
-  redirect '/hello' unless (input >= 1 && input <= 99)
+  redirect '/' unless (input >= 1 && input <= 99)
   Twilio::TwiML::Response.new do |r|
     input.times do |i|
       count = i + 1
