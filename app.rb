@@ -2,19 +2,19 @@ require 'rubygems'
 require 'sinatra'
 require 'twilio-ruby'
 
-# get '/hello' do
-#     Twilio::TwiML::Response.new do |r|
-#         r.Gather :finishOnKey => "#", :action => "/hello/phonebuzz", :method => 'get' do |s|
-#             s.Say 'Please enter a number followed by the pound sign'
-#         end
-#     end.text
-# end
-
 get '/hello' do
+    Twilio::TwiML::Response.new do |r|
+        r.Gather :finishOnKey => "#", :action => "/hello/phonebuzz", :method => 'get' do |g|
+            g.Say 'Please enter a number from 1 to 99 followed by the pound sign'
+        end
+    end.text
+end
 
-  # number = params['Digits'].to_i
+get '/hello/phonebuzz' do
+
+  number = params['Digits'].to_i
   number = 25
-  redirect '/hello' unless (number >= 1 && number <= 999)
+  redirect '/hello' unless (number >= 1 && number <= 99)
   Twilio::TwiML::Response.new do |r|
     number.times do |i|
       curr_num = i + 1
