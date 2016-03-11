@@ -2,14 +2,6 @@ require 'rubygems'
 require 'sinatra'
 require 'twilio-ruby'
 
-# get '/hello-monkey' do
-#   Twilio::TwiML::Response.new do |r|
-#     r.Say 'Hello Monkey'
-#   end.text
-# end
-
-enable :sessions
-
 get '/hello' do
     Twilio::TwiML::Response.new do |r|
         r.Gather :finishOnKey => "#", :action => "/hello/phonebuzz", :method => 'get' do |s|
@@ -20,7 +12,7 @@ end
 
 get '/hello/phonebuzz' do
     input = params['Digits'].to_i
-    redirect '/hello' unless (number >= 1 && number <= 999)
+    redirect '/hello' unless (input >= 1 && input <= 999)
     Twilio::TwiML::Response.new do |r|
         input.times do |i|
             current = i +
