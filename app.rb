@@ -7,8 +7,6 @@ Dotenv.load
 
 #PHONEBUZZ PHASE 1
 
-TWILIO_ACCOUNT_SID = 'AC3412f3a1f8d0868995248826459ce0ff'
-TWILIO_AUTH_TOKEN = '0bec4f2cef51865b25caabb53c604683'
 #@client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 # call = @client.calls.create(
@@ -84,29 +82,32 @@ post '/receive_sms' do
   response.to_xml
 end
 
-post '/send_sms' do
-  to=params["to"]
-  message = params["body"]
-  client = Twilio::REST::Client.new(
-    'AC3412f3a1f8d0868995248826459ce0ff',
-    '0bec4f2cef51865b25caabb53c604683'
-  )
+# post '/send_sms' do
+#   to=params["to"]
+#   message = params["body"]
+#   client = Twilio::REST::Client.new(
+#     ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+#   )
 
-  client.messages.create(
-    to: to,
-    :from => "+15005550006",
-    body:  message
-  )
+#   client.messages.create(
+#     to: to,
+#     :from => "+15005550006",
+#     body:  message
+#   )
+# end
+
+get '/token' do
+  capability = Twilio::Util::Capability.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+  capability.allow_client_outgoing 'AP5e447921b4e075c1e5610ce59b820f65'
+  capability.generate
 end
 
-post '/call' do
-  TWILIO_ACCOUNT_SID = 'AC3412f3a1f8d0868995248826459ce0ff'
-  TWILIO_AUTH_TOKEN = '0bec4f2cef51865b25caabb53c604683'
-  @client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-  call = @client.calls.create(
-      :url => "http://phonebuzz-1.herokuapp.com/phonebuzz",
-      :to => "params['number']",
-      :from => "+15005550006",
-      :method => "get"
+get '/call' do
+client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+  call = client.calls.create(
+      url: "https://32f37ebb.ngrok.io/phonebuzz",
+      to:  "params['number']",
+      from: "+13478365066",
+      method: "get"
     )
 end
