@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     builder (3.2.2)
+    dotenv (2.1.0)
     jwt (1.5.3)
     multi_json (1.11.2)
     rack (1.6.4)
@@ -21,6 +22,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   sinatra
   twilio-ruby
 
