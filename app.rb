@@ -76,10 +76,35 @@ get '/phonebuzz/start' do
   end.text
 end
 
+post '/receive_sms' do
+  content_type = 'text/xml'
+  response = Twilio::TwiML::Response.new do |r|
+    r.Message 'Hey thanks for messaging me!'
+  end
+  response.to_xml
+end
+
+post '/send_sms' do
+  to=params["to"]
+  message = params["body"]
+  client = Twilio::REST::Client.new(
+    'AC3412f3a1f8d0868995248826459ce0ff',
+    '0bec4f2cef51865b25caabb53c604683'
+  )
+
+  client.messages.create(
+    to: to,
+    :from => "+15005550006",
+    body:  message
+  )
+end
+
 post '/call' do
-  @client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
+  TWILIO_ACCOUNT_SID = 'AC3412f3a1f8d0868995248826459ce0ff'
+  TWILIO_AUTH_TOKEN = '0bec4f2cef51865b25caabb53c604683'
+  @client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
   call = @client.calls.create(
-      :url => "phonebuzz-1.herokuapp.com/phonebuzz",
+      :url => "http://phonebuzz-1.herokuapp.com/phonebuzz",
       :to => "params['number']",
       :from => "+15005550006",
       :method => "get"
