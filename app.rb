@@ -102,10 +102,10 @@ get '/token' do
   capability.generate
 end
 
-get '/call' do
+post '/call' do
 client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
   call = client.calls.create(
-      url: "https://32f37ebb.ngrok.io/phonebuzz",
+      url: "https://phonebuzz-1.herokuapp.com/phonebuzz",
       to:  "params['number']",
       from: "+13478365066",
       method: "get"
