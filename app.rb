@@ -106,7 +106,7 @@ post '/call' do
 client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
   call = client.calls.create(
       url: "https://phonebuzz-1.herokuapp.com/phonebuzz",
-      to:  "params['number']",
+      to:  "params['numToCall']",
       from: "+13478365066",
       method: "get"
     )
