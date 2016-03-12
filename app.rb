@@ -77,10 +77,10 @@ get '/phonebuzz/start' do
 end
 
 post '/call' do
-  @client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
+  @client = Twilio::REST::Client.new(ENV['ACCOUNT_SID'], ENV['AUTH_TOKEN'])
   call = @client.calls.create(
       :url => "phonebuzz-1.herokuapp.com/phonebuzz",
-      :to => "+13043765973",
+      :to => "params['number']",
       :from => "+15005550006",
       :method => "get"
     )
