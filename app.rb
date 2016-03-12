@@ -7,8 +7,6 @@ Dotenv.load
 
 #PHONEBUZZ PHASE 1
 
-#@client = Twilio::REST::Client.new(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
-
 # call = @client.calls.create(
 #     :url => "http://demo.twilio.com/docs/voice.xml",
 #     :to => "+13043765973",
@@ -81,20 +79,6 @@ post '/receive_sms' do
   end
   response.to_xml
 end
-
-# post '/send_sms' do
-#   to=params["to"]
-#   message = params["body"]
-#   client = Twilio::REST::Client.new(
-#     ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-#   )
-
-#   client.messages.create(
-#     to: to,
-#     :from => "+15005550006",
-#     body:  message
-#   )
-# end
 
 get '/token' do
   capability = Twilio::Util::Capability.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
