@@ -5,6 +5,15 @@ require 'dotenv'
 
 Dotenv.load
 
+TWILIO_ACCOUNT_SID = "AC920d215c2e2e2423c0c410a59fdcb1b0"
+TWILIO_AUTH_TOKEN = "38ca49247f7fd660d1967f28e944d7ca"
+TWILIO_NUMBER="+13478365066"
+
+set :bind, '0.0.0.0'
+set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
+
+client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
+
 #PHONEBUZZ PHASE 1
 
 # call = @client.calls.create(
@@ -72,48 +81,44 @@ get '/phonebuzz/start' do
   end.text
 end
 
-post '/receive_sms' do
-  content_type = 'text/xml'
-  response = Twilio::TwiML::Response.new do |r|
-    r.Message 'Hey thanks for messaging me!'
-  end
-  response.to_xml
-end
-
-get '/token' do
-  capability = Twilio::Util::Capability.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-  capability.allow_client_outgoing 'AP5e447921b4e075c1e5610ce59b820f65'
-  capability.generate
-end
-
-get '/sms' do
-  response = Twilio::TwiML::Response.new do |r|
-    r.Message('Thanks for texting')
-  end
-  content_type 'text/xml'
-  response.text
-end
-
-# get '/random' do
-#   client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-#   message = client.account.messages.list(to: '+13478365066').sample
-#   repsonse = Twilio::TwiML::Response.new do |r|
-#     r.Dial callerId: '+13478365066' do |d|
-#       d.Number message.from
-#     end
-#     content_type 'text/xml'
-#     response.text
+# post '/receive_sms' do
+#   content_type = 'text/xml'
+#   response = Twilio::TwiML::Response.new do |r|
+#     r.Message 'Hey thanks for messaging me!'
 #   end
+#   response.to_xml
 # end
 
-TWILIO_ACCOUNT_SID = "AC920d215c2e2e2423c0c410a59fdcb1b0"
-TWILIO_AUTH_TOKEN = "38ca49247f7fd660d1967f28e944d7ca"
+# get '/token' do
+#   capability = Twilio::Util::Capability.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
+#   capability.allow_client_outgoing 'AP5e447921b4e075c1e5610ce59b820f65'
+#   capability.generate
+# end
+
+# get '/sms' do
+#   response = Twilio::TwiML::Response.new do |r|
+#     r.Message('Thanks for texting')
+#   end
+#   content_type 'text/xml'
+#   response.text
+# end
+
+# post '/call' do
+# client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
+# call = client.account.calls.create(
+#     url: "https://phonebuzz-1.herokuapp.com/phonebuzz",
+#     to:  params['numToCall'],
+#     from: '+13478365066',
+#     method: 'get'
+#   )
+# end
 
 post '/call' do
-client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
-call = client.account.calls.create(
-    url: "https://phonebuzz-1.herokuapp.com/phonebuzz",
-    to:  '+13043765973',
-    from: '+13478365066'
+  client.account.calls.create(
+    :from => TWILIO_NUMBER,
+    :to => params[:to],
+    :url => 'https://phonebuzz-1.herokuapp.com/phonebuzz'
   )
 end
+
+

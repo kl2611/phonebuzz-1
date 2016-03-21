@@ -2,20 +2,22 @@
 <html>
 <head>
   <title>PhoneBuzz</title>
-  <link rel="stylesheet" href="style.css">
 
 </head>
 <body>
   <div class="container">
-    <h2 class="instructions">Enter your phone number below</h2>
-    <form class="phone-num-form">
-      <input type="tel" name="num-to-call" placeholder="e.g. (123) 456-7890">
-      <input type="submit" value="Submit">
-    </form><!-- .phone-num-form -->
+    <h2 class="instructions">Welcome to PhoneBuzz!</h2>
+    <p>Call +13478365066 to play FizzBuzz on your phone.</p>
 
-  </div><!-- .container -->
+    <form>
+        <p>Or, enter your mobile phone number:</p>
+        <input id="to" type="text"
+            placeholder="ex: +11234567890"/>
+        <button>Submit</button>
+    </form>
+  </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="script.js"></script>
+  <script src="form.js"></script>
 </body>
 </html>
