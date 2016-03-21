@@ -117,7 +117,7 @@ post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => 'https://phonebuzz-1.herokuapp.com/phonebuzz'
+    :url => '/phonebuzz'
   )
 end
 
