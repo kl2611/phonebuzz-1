@@ -52,13 +52,15 @@ get '/' do
 end
 
 get '/phonebuzz' do
-    Twilio::TwiML::Response.new do |r|
+    response = Twilio::TwiML::Response.new do |r|
         r.Gather :finishOnKey => "#", :action => "/phonebuzz/start", :method => 'get' do |g|
             g.Say 'Enter a number from 1 to 99 followed by the pound sign'
         end
-    end.text
+    end
 
+  #render TwiML (XML) document
   content_type 'text/xml'
+  response.text
 end
 
 get '/phonebuzz/start' do
