@@ -117,7 +117,7 @@ post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => '/phonebuzz'
+    :url => 'http://twilio-elearning.herokuapp.com/starter/voice.php'
   )
 end
 
