@@ -57,6 +57,8 @@ get '/phonebuzz' do
             g.Say 'Enter a number from 1 to 99 followed by the pound sign'
         end
     end.text
+
+  content_type 'text/xml'
 end
 
 get '/phonebuzz/start' do
@@ -114,7 +116,7 @@ post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => 'https://phonebuzz-1.herokuapp.com/phonebuzz'
+    :url => 'http://twilio-elearning.herokuapp.com/starter/voice.php'
   )
 end
 
