@@ -118,8 +118,11 @@ post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => 'https://phonebuzz-1.herokuapp.com/phonebuzz'
+    :url => 'http://b3bec1a1.ngrok.io/phonebuzz',
+    :method => 'get'
   )
+
+  'Call is inbound!'
 end
 
 
