@@ -7,7 +7,7 @@ Direct your Twilio phone number to https://phonebuzz-1.herokuapp.com/phonebuzz, 
 ##Phase 2
 Point your Twilio phone number to https://phonebuzz-1.herokuapp.com/ with a HTTP GET request. Enter a phone number in the text field to receive a new call. Since this is a demo account, the number might not be called.
 
-To download it locally, create a .env file with your Twilio auth token.
+To download the files locally, create a `.env` file with your Twilio auth token.
 
 ```ruby
 ACCOUNT_SID=YOUR_ACCOUNT_SID_HERE
