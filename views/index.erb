@@ -2,7 +2,7 @@
 <html>
 <head>
   <title>PhoneBuzz</title>
-
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
 <body>
   <div class="container">
@@ -11,12 +11,19 @@
 
     <form>
         <p>Or, enter your mobile phone number and delay (in seconds):</p>
-        <input id="to" type="text"
+        <b>Phone Number:</b> <input id="to" type="text"
             placeholder="ex: +11234567890"/>
-        <input id="delay" type="text" value="0"
+        <b>Delay:</b> <input id="delay" type="text" value="0"
             placeholder="ex: 5" />
         <button>Submit</button>
     </form>
+
+    <h3>History</h3>
+    <form action="/submit" method="POST">
+      <input type="text" name="model[name]" placeholder="Enter Model Name" />
+      <input type="submit" value="Submit" />
+    </form>
+
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

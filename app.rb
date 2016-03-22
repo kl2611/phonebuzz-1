@@ -1,13 +1,16 @@
 require 'rubygems'
 require 'sinatra'
 require 'twilio-ruby'
-require 'dotenv'
-
-Dotenv.load
+require 'sinatra/activerecord'
+require './config/environments'
+require './models/model'
 
 TWILIO_ACCOUNT_SID = "AC920d215c2e2e2423c0c410a59fdcb1b0"
 TWILIO_AUTH_TOKEN = "38ca49247f7fd660d1967f28e944d7ca"
 TWILIO_NUMBER="+13478365066"
+
+set :bind, '0.0.0.0'
+set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 
 client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 
@@ -109,10 +112,23 @@ post '/call' do
     :from => TWILIO_NUMBER,
     :to => params[:to],
     :url => 'http://ebf8a765.ngrok.io/phonebuzz',
-    :method => 'get'
+    :method => 'GET'
   )
 
   'Call is inbound!'
 end
 
+post '/submit' do
+  @model = Model.new(params[:model])
+  if @model.save
+    redirect '/models'
+  else
+    "Sorry, there was an error!"
+  end
+end
+
+get '/models' do
+  @models = Model.all
+  erb :models
+end
 
