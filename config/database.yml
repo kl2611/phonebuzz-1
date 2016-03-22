@@ -2,6 +2,7 @@ default: &default
   adapter: postgresql
   encoding: unicode
   pool: 5
+  host: localhost
 
 development:
   adapter: postgresql
@@ -11,7 +12,7 @@ development:
   host: localhost
 
 test:
-  adapter: postgrsql
+  adapter: postgresql
   encoding: unicode
   database: phonebuzz
   pool: 5
