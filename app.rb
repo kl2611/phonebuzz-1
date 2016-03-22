@@ -104,21 +104,11 @@ end
 #   response.text
 # end
 
-# post '/call' do
-# client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
-# call = client.account.calls.create(
-#     url: "https://phonebuzz-1.herokuapp.com/phonebuzz",
-#     to:  params['numToCall'],
-#     from: '+13478365066',
-#     method: 'get'
-#   )
-# end
-
 post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => 'http://b3bec1a1.ngrok.io/phonebuzz',
+    :url => 'http://ebf8a765.ngrok.io/phonebuzz',
     :method => 'get'
   )
 
