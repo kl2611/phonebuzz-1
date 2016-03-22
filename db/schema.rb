@@ -21,9 +21,9 @@ ActiveRecord::Schema.define(version: 20160322212925) do
   end
 
   create_table "posts", force: :cascade do |t|
-    t.integer  "phone",      null: false
-    t.integer  "delay",      null: false
-    t.integer  "fizzbuzz",   null: false
+    t.text     "phone",      null: false
+    t.integer  "delay"
+    t.integer  "fizzbuzz"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

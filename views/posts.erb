@@ -1,0 +1,21 @@
+<h3>All Calls</h3>
+<table>
+    <tr>
+        <th>Call Time</th>
+        <th>Phone Number</th>
+        <th>Delay (s)</th>
+        <th>FizzBuzz Number</th>
+    </tr>
+
+    <% @posts.each do |post| %>
+        <tr>
+            <td><%= post.created_at %></td>
+            <td><%= post.phone %></td>
+            <td><%= post.delay %></td>
+            <td><%= post.fizzbuzz %></td>
+        </tr>
+    <% end %>
+</table>
+
+
+<a href="/">Back to Home</a>

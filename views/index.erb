@@ -4,16 +4,17 @@
   <title>PhoneBuzz</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 </head>
+
 <body>
   <div class="container">
     <h2 class="instructions">Welcome to PhoneBuzz!</h2>
-    <p>Call +13478365066 to play FizzBuzz on your phone.</p>
+    <p>Call +1 (347) 836-5066 to play FizzBuzz on your phone.</p>
 
-    <form>
+    <form action="/submit" method="POST">
         <p>Or, enter your mobile phone number and delay (in seconds):</p>
-        <b>Phone Number:</b> <input id="to" type="text"
+        <b>Phone Number:</b> <input id="to" name="post[phone]" type="text"
             placeholder="ex: +11234567890"/>
-        <b>Delay:</b> <input id="delay" type="text" value="0"
+        <b>Delay:</b> <input id="delay" name="post[delay]" type="text" value="0"
             placeholder="ex: 5" />
         <button>Submit</button>
     </form>

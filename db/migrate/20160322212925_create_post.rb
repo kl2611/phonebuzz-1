@@ -1,9 +1,9 @@
 class CreatePost < ActiveRecord::Migration
   def up
     create_table :posts do |t|
-        t.integer :phone, null: false
-        t.integer :delay, null: false
-        t.integer :fizzbuzz, null: false
+        t.text :phone, null: false
+        t.integer :delay
+        t.integer :fizzbuzz
 
         t.timestamps null: false
     end

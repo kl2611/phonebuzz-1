@@ -22,4 +22,4 @@ Go to https://phonebuzz-1.herokuapp.com/. Enter your phone number in the text fi
 Go to https://phonebuzz-1.herokuapp.com/. Same instructions as in Phase 2 but this time, you can add a custom delay (in seconds) to when the Twilio number will call you.
 
 ##Phase 4: Tracking PhoneBuzz
-In progress
+The history section contains the last 10 calls made from this Twilio Number. The table contains a timestamp of when the calls were made, the number called, what the delay was, and the fizzbuzz number entered by the user. There is also an option to replay a call, with the original fizzbuzz number entered. If a call ended before a fizzbuzz number was entered, the user will be directed to enter a new number.

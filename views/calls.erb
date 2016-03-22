@@ -1,0 +1,17 @@
+<h3>Last 10 Calls</h3>
+<table>
+    <tr>
+        <th>Call Time</th>
+        <th>Phone Number</th>
+        <th>Delay (s)</th>
+        <th>FizzBuzz Number</th>
+        <th>Replay</th>
+    </tr>
+
+
+<% @calls[1..10].each do |call| %>
+<tr>
+    <td><%= call.start_time %></td>
+    <td><%= call.to_formatted %></td>
+</tr>
+<% end %>
