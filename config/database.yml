@@ -1,4 +1,17 @@
-development:
+default: &default
   adapter: postgresql
+  pool: 5
+  timeout: 5000
+
+development:
+  <<: *default
   database: phonebuzz
   host: localhost
+
+test:
+  <<: *default
+  database: phonebuzz
+
+production:
+  <<: *default
+  database: phonebuzz
