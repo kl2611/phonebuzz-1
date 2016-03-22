@@ -7,7 +7,7 @@ default: &default
 development:
   adapter: postgresql
   encoding: unicode
-  database: development
+  database: phonebuzz
   pool: 5
   host: localhost
 
