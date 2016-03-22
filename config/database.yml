@@ -1,19 +1,4 @@
-default: &default
-  adapter: postgresql
-  encoding: unicode
-  pool: 5
-  host: localhost
-
 development:
   adapter: postgresql
-  encoding: unicode
   database: phonebuzz
-  pool: 5
-  host: localhost
-
-test:
-  adapter: postgresql
-  encoding: unicode
-  database: phonebuzz
-  pool: 5
   host: localhost
