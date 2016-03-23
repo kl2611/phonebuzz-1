@@ -1,16 +1,4 @@
-default: &default
-  adapter: postgresql
-  pool: 5
-
 development:
-  <<: *default
-  database: phonebuzz
+  adapter: postgresql
+  database: development
   host: localhost
-
-test:
-  <<: *default
-  database: phonebuzz
-
-production:
-  <<: *default
-  database: phonebuzz
