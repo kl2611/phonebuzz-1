@@ -1,4 +1,6 @@
 development:
   adapter: postgresql
   database: development
+  username: kelly
+  password: kelly
   host: localhost
