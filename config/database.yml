@@ -4,3 +4,17 @@ development:
   username: kelly
   password: kelly
   database: phonebuzz
+
+test:
+  adapter: postgresql
+  database: phonebuzz
+  pool: 5
+  username: kelly
+  password: kelly
+
+production:
+  adapter: postgresql
+  database: phonebuzz
+  pool: 5
+  username: kelly
+  password: kelly
