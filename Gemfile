@@ -8,3 +8,4 @@ gem 'sinatra-activerecord'
 gem 'dotenv'
 gem 'pg'
 gem 'rake'
+gem 'rails_12factor', group: :production
