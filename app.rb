@@ -105,3 +105,9 @@ get '/calls' do
 
   erb :calls
 end
+
+after do
+  # Close the connection after the request is done so that we don't
+  # deplete the ActiveRecord connection pool.
+  ActiveRecord::Base.connection.close
+end
