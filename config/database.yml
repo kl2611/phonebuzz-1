@@ -1,13 +1,15 @@
 development:
   adapter: postgresql
-  database: phonebuzz
-  username: <%= ENV['PG_USER'] %>
-  password: <%= ENV['PG_PASS'] %>
   host: localhost
+  username: kelly
+  password: kelly
+  database: development
+  encoding: UTF8
 
 test:
   adapter: postgresql
   host: localhost
-  username: <%= ENV['PG_USER'] %>
-  password: <%= ENV['PG_PASS'] %>
+  username: kelly
+  password: kelly
   database: phonebuzz
+  encoding: UTF8
