@@ -4,6 +4,7 @@ development:
   username: kelly
   password: kelly
   database: phonebuzz
+  port: 5432
 
 test:
   adapter: postgresql
@@ -11,6 +12,7 @@ test:
   pool: 5
   username: kelly
   password: kelly
+  port: 5432
 
 production:
   adapter: postgresql
@@ -18,3 +20,4 @@ production:
   pool: 5
   username: kelly
   password: kelly
+  port: 5432
