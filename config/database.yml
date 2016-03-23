@@ -3,13 +3,4 @@ development:
   host: localhost
   username: kelly
   password: kelly
-  database: development
-  encoding: UTF8
-
-test:
-  adapter: postgresql
-  host: localhost
-  username: kelly
-  password: kelly
   database: phonebuzz
-  encoding: UTF8
