@@ -3,7 +3,6 @@ require 'sinatra'
 require 'twilio-ruby'
 require 'sinatra/activerecord'
 require './config/environments'
-require './models/model'
 require './models/post'
 
 TWILIO_ACCOUNT_SID = "AC920d215c2e2e2423c0c410a59fdcb1b0"
@@ -12,6 +11,7 @@ TWILIO_NUMBER="+13478365066"
 
 set :bind, '0.0.0.0'
 set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
+
 
 client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 
@@ -51,33 +51,11 @@ get '/phonebuzz/start' do
   end.text
 end
 
-# post '/receive_sms' do
-#   content_type = 'text/xml'
-#   response = Twilio::TwiML::Response.new do |r|
-#     r.Message 'Hey thanks for messaging me!'
-#   end
-#   response.to_xml
-# end
-
-# get '/token' do
-#   capability = Twilio::Util::Capability.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
-#   capability.allow_client_outgoing 'AP5e447921b4e075c1e5610ce59b820f65'
-#   capability.generate
-# end
-
-# get '/sms' do
-#   response = Twilio::TwiML::Response.new do |r|
-#     r.Message('Thanks for texting')
-#   end
-#   content_type 'text/xml'
-#   response.text
-# end
-
 post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => 'http://ebf8a765.ngrok.io/phonebuzz',
+    :url => 'http://e0d6cccf.ngrok.io/phonebuzz',
     :method => 'GET'
   )
 
@@ -100,14 +78,9 @@ end
 
 get '/calls' do
   @calls = client.account.calls.list({
-      :status => "completed",
+      :status => "completed"
     })
 
   erb :calls
 end
 
-after do
-  # Close the connection after the request is done so that we don't
-  # deplete the ActiveRecord connection pool.
-  ActiveRecord::Base.connection.close
-end

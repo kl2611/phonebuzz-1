@@ -2,14 +2,12 @@
 A Sinatra app using Ruby and TwiML to play FizzBuzz over the phone.
 
 ##Setup
-If you want to run this project locally, download the files and set three system environment variables. You can open a terminal window and type these three commands and replace all characters after the `=` with your own Twilio account credentials.
-
-For Mac and Linux:
+If you want to run this project locally, download the files and set three variables in `app.rb`. Replace all characters after the `=` with your own Twilio account credentials.
 
 ```ruby
-export TWILIO_ACCOUNT_SID=ACXXXXXXXXX
-export TWILIO_AUTH_TOKEN=XXXXXXXXX
-export TWILIO_NUMBER=+13478365066
+TWILIO_ACCOUNT_SID=ACXXXXXXXXX
+TWILIO_AUTH_TOKEN=XXXXXXXXX
+TWILIO_NUMBER=+13478365066
 ```
 
 ##Phase 1: Simple TwiML PhoneBuzz

@@ -1,6 +1,7 @@
 <h3>All Calls</h3>
 <table>
     <tr>
+        <th>ID</th>
         <th>Call Time</th>
         <th>Phone Number</th>
         <th>Delay (s)</th>
@@ -9,6 +10,7 @@
 
     <% @posts.each do |post| %>
         <tr>
+            <td><%= post.id %></td>
             <td><%= post.created_at %></td>
             <td><%= post.phone %></td>
             <td><%= post.delay %></td>

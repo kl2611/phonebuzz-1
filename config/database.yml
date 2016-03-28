@@ -1,6 +1,14 @@
-development:
+default: &default
   adapter: postgresql
-  database: development
   username: <%= ENV['PG_USER'] %>
   password: <%= ENV['PG_PASS'] %>
   host: localhost
+  pool: 5
+
+development:
+  <<: *default
+  database: development
+
+test:
+  <<: *default
+  database: test

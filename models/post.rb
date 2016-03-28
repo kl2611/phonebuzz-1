@@ -1,3 +1,3 @@
 class Post < ActiveRecord::Base
-    validates_presence_of :phone
+    validates_presence_of :phone, :delay
 end

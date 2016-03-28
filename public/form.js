@@ -3,6 +3,10 @@ function showFlash(message) {
     $('#flash').show();
 }
 
+$(document).ready(function() {
+  form.init();
+});
+
 $('form button').on('click', function(e) {
     e.preventDefault();
 
@@ -11,8 +15,8 @@ $('form button').on('click', function(e) {
     var url = '/call';
     setTimeout(function() {
         $.ajax(url, {
-            method:'POST',
-            dataType:'text',
+            method: 'POST',
+            dataType: 'text',
             data:{
                 to:$('#to').val(),
                 delay:$('#delay').val()
