@@ -12,7 +12,6 @@ TWILIO_NUMBER="+13478365066"
 set :bind, '0.0.0.0'
 set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 
-
 client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 
 get '/' do
