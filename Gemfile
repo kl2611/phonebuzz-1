@@ -8,4 +8,3 @@ gem 'sinatra-activerecord'
 gem 'dotenv'
 gem 'pg'
 gem 'rake'
-
