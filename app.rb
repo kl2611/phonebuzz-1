@@ -62,7 +62,7 @@ post '/call' do
   client.account.calls.create(
     :from => ENV['TWILIO_NUMBER'],
     :to => params[:to],
-    :url => 'http://07fca444.ngrok.io/phonebuzz',
+    :url => 'https://phonebuzz-1.herokuapp.com/phonebuzz',
     :method => 'GET'
   )
 
@@ -78,7 +78,7 @@ get '/replay/:phone/:delay/:fizzbuzz' do
   client.account.calls.create(
     :from => ENV['TWILIO_NUMBER'],
     :to => params['phone'],
-    :url => 'http://07fca444.ngrok.io/replay/start',
+    :url => 'https://phonebuzz-1.herokuapp.com//replay/start',
     :method => 'GET'
   )
 
