@@ -38,9 +38,9 @@ get '/phonebuzz/start' do
   input = params['Digits'].to_i
   redirect '/phonebuzz' unless (input >= 1 && input <= 99)
 
-  # @post = Post.last
-  # @post.fizzbuzz = input
-  # @post.save
+  @post = Post.last
+  @post.fizzbuzz = input
+  @post.save
 
   Twilio::TwiML::Response.new do |r|
     input.times do |i|
