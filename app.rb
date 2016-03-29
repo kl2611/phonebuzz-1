@@ -15,6 +15,11 @@ set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
 
 get '/' do
+  client = Twilio::REST::Client.new TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN
+  @calls = client.account.calls.list({
+    :status => "completed"
+  })
+
   erb :index
 end
 
@@ -33,6 +38,10 @@ end
 get '/phonebuzz/start' do
   input = params['Digits'].to_i
   redirect '/phonebuzz' unless (input >= 1 && input <= 99)
+
+  @post = Post.last
+  @post.fizzbuzz = input
+  @post.save
 
   Twilio::TwiML::Response.new do |r|
     input.times do |i|
@@ -54,25 +63,49 @@ post '/call' do
   client.account.calls.create(
     :from => TWILIO_NUMBER,
     :to => params[:to],
-    :url => 'http://e0d6cccf.ngrok.io/phonebuzz',
+    :url => 'http://07fca444.ngrok.io/phonebuzz',
     :method => 'GET'
   )
+
+  @post = Post.new(:phone => params[:to], :delay => params[:delay])
+  @post.save
 
   'Call is inbound!'
 end
 
-post '/submit' do
-  @post = Post.new(params[:post])
-  if @post.save
-    redirect '/posts'
-  else
-    "Sorry, there was an error!"
-  end
+get '/replay/:phone/:delay/:fizzbuzz' do
+  sleep (params['delay'].to_i)
+
+  client.account.calls.create(
+    :from => TWILIO_NUMBER,
+    :to => params['phone'],
+    :url => 'http://07fca444.ngrok.io/replay/start',
+    :method => 'GET'
+  )
+
+  @post = Post.new(:phone => params['phone'], :delay => params['delay'], :fizzbuzz => params['fizzbuzz'])
+  @post.save
 end
 
-get '/posts' do
-  @posts = Post.all
-  erb :posts
+get '/replay/start' do
+  @post = Post.last
+  input = @post.fizzbuzz
+  redirect '/phonebuzz' unless (input >= 1 && input <= 99)
+
+  Twilio::TwiML::Response.new do |r|
+    input.times do |i|
+      count = i + 1
+      if count % 15 == 0
+        r.Say "fizz buzz"
+      elsif count % 5 == 0
+        r.Say "buzz"
+      elsif count % 3 == 0
+        r.Say "fizz"
+      else
+        r.Say "#{count}"
+      end
+    end
+  end.text
 end
 
 get '/calls' do

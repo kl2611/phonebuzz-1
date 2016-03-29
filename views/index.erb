@@ -10,21 +10,41 @@
     <h2 class="instructions">Welcome to PhoneBuzz!</h2>
     <p>Call +1 (347) 836-5066 to play FizzBuzz on your phone.</p>
 
-    <form action="/submit" method="POST">
+    <form>
         <p>Or, enter your mobile phone number and delay (in seconds):</p>
 
-        <b>Phone Number:</b> <input id="to" name="post[phone]" type="text"
-            placeholder="ex: +11234567890"/>
-        <b>Delay:</b> <input id="delay" name="post[delay]" type="text" value="0"
+        <b>Phone Number:</b> <input id="to" type="text"
+            placeholder="ex: 1234567890"/>
+        <b>Delay:</b> <input id="delay" type="text" value="0"
             placeholder="ex: 5" />
 
         <button>Submit</button>
-        <!-- <input type="submit" value="Submit" /> -->
     </form>
 
     <h3>History</h3>
+    <h3>Last 10 Calls</h3>
+    <table class="table table-stripped">
+        <tr>
+            <th>Call Time </th>
+            <th>Phone Number </th>
+            <th>Delay (sec) </th>
+            <th>FizzBuzz Number </th>
+            <th>Replay</th>
+        </tr>
 
-
+      <% @posts = Post.all %>
+      <% unless @posts.nil? %>
+        <% @posts[-10..-1].each do |post| %>
+          <tr>
+            <td><%= post.created_at %></td>
+            <td><%= post.phone %></td>
+            <td><%= post.delay %></td>
+            <td><%= post.fizzbuzz %></td>
+            <td><a href="/replay/<%= post.phone%>/<%= post.delay%>/<%= post.fizzbuzz %>" class="btn btn-danger" id="<%= post.id %>" target="_blank">Replay</a></td>
+          </tr>
+        <%end%>
+        <%end %>
+    </table>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>

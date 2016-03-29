@@ -3,14 +3,11 @@ function showFlash(message) {
     $('#flash').show();
 }
 
-$(document).ready(function() {
-  form.init();
-});
-
 $('form button').on('click', function(e) {
     e.preventDefault();
 
     var delay = $('#delay').val() * 1000;
+
 
     var url = '/call';
     setTimeout(function() {

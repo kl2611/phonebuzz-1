@@ -8,10 +8,11 @@
         <th>Replay</th>
     </tr>
 
-
-<% @calls[1..10].each do |call| %>
-<tr>
-    <td><%= call.start_time %></td>
-    <td><%= call.to_formatted %></td>
-</tr>
+<% unless @calls.nil? %>
+    <% @calls[1..10].each do |call| %>
+    <tr>
+        <td><%= call.start_time %></td>
+        <td><%= call.to_formatted %></td>
+    </tr>
+    <% end %>
 <% end %>

@@ -6,6 +6,7 @@
         <th>Phone Number</th>
         <th>Delay (s)</th>
         <th>FizzBuzz Number</th>
+        <th>Replay</th>
     </tr>
 
     <% @posts.each do |post| %>
@@ -15,6 +16,7 @@
             <td><%= post.phone %></td>
             <td><%= post.delay %></td>
             <td><%= post.fizzbuzz %></td>
+            <td></td>
         </tr>
     <% end %>
 </table>
