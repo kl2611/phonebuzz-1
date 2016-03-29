@@ -10,7 +10,7 @@ require 'dotenv'
 # set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 
 Dotenv.load
-# use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phonebuzz', '/phonebuzz/start'
+use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phonebuzz', '/phonebuzz/start'
 
 client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
@@ -38,9 +38,9 @@ get '/phonebuzz/start' do
   input = params['Digits'].to_i
   redirect '/phonebuzz' unless (input >= 1 && input <= 99)
 
-  @post = Post.last
-  @post.fizzbuzz = input
-  @post.save
+  # @post = Post.last
+  # @post.fizzbuzz = input
+  # @post.save
 
   Twilio::TwiML::Response.new do |r|
     input.times do |i|
