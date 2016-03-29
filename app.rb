@@ -10,7 +10,7 @@ require 'dotenv'
 # set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 
 Dotenv.load
-use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phonebuzz', '/phonebuzz/start'
+use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phase1', '/phase1/start', '/phonebuzz', '/phonebuzz/start'
 
 client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
@@ -20,6 +20,38 @@ get '/' do
   })
 
   erb :index
+end
+
+get '/phase1' do
+    response = Twilio::TwiML::Response.new do |r|
+        r.Gather :finishOnKey => "#", :action => "/phase1/start", :method => 'get' do |g|
+            g.Say 'Enter a number from 1 to 99 followed by the pound sign'
+        end
+    end
+
+  #render TwiML (XML) document
+  content_type 'text/xml'
+  response.text
+end
+
+get '/phase1/start' do
+  input = params['Digits'].to_i
+  redirect '/phase1' unless (input >= 1 && input <= 99)
+
+  Twilio::TwiML::Response.new do |r|
+    input.times do |i|
+      count = i + 1
+      if count % 15 == 0
+        r.Say "fizz buzz"
+      elsif count % 5 == 0
+        r.Say "buzz"
+      elsif count % 3 == 0
+        r.Say "fizz"
+      else
+        r.Say "#{count}"
+      end
+    end
+  end.text
 end
 
 get '/phonebuzz' do
@@ -78,7 +110,7 @@ get '/replay/:phone/:delay/:fizzbuzz' do
   client.account.calls.create(
     :from => ENV['TWILIO_NUMBER'],
     :to => params['phone'],
-    :url => 'https://phonebuzz-1.herokuapp.com//replay/start',
+    :url => 'https://phonebuzz-1.herokuapp.com/replay/start',
     :method => 'GET'
   )
 
