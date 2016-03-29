@@ -66,7 +66,7 @@ post '/call' do
     :method => 'GET'
   )
 
-  @post = Post.new(:phone => params[:to], :delay => params[:delay])
+  @post = Post.new(:phone => params[:to], :delay => params[:delay], :fizzbuzz => 0)
   @post.save
 
   'Call is inbound!'
