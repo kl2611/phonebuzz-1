@@ -4,7 +4,7 @@ A Sinatra app using Ruby, TwiML, and PostgreSQL database to play FizzBuzz over t
 https://phonebuzz-1.herokuapp.com/
 
 ##Setup
-To run this project locally, download the files and set three environment variables. Navigate to the root of the folder in terminal and type `touch .env`.
+The following code has been tested and sucessfully run with Mac OS X. To run this project locally, download the files and set three environment variables. Navigate to the root of the folder in terminal and type `touch .env`.
 
 Open the .env file and enter the following below. Replace all characters after the `=` with your own Twilio account credentials.
 
@@ -13,7 +13,7 @@ TWILIO_ACCOUNT_SID=ACXXXXXXXXX
 TWILIO_AUTH_TOKEN=XXXXXXXXX
 TWILIO_NUMBER=+13478365066
 ```
-In terminal, run `bundle install` to download the required dependencies. Type `ruby app.rb` to run the Sinatra app. Open another terminal window, type `./ngrok http 4567` and then copy the fowarding url generated with the `ngrok.io` ending. This will expose the local web server to the internet.
+In terminal, run `bundle install` to download the required dependencies. Type `ruby app.rb` to run the Sinatra app. If you do not have ngrok installed, download it <a href="https://ngrok.com/download" target="_blank">here</a>. Open another terminal window, type `./ngrok http 4567` and then copy the fowarding url generated with the `ngrok.io` ending. This will expose the local web server to the internet.
 
 Go back to `app.rb` file and underneath `post '/call' do` and `get '/replay/:phone/:delay/:fizzbuzz' do`, there is a `:url` parameter. After the `=>`, replace all instances of https://phonebuzz-1.herokuapp.com with your own ngrok.io url (example: http://07fca444.ngrok.io/phonebuzz).
 
