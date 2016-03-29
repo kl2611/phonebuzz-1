@@ -6,10 +6,8 @@ require './config/environments'
 require './models/post'
 require 'dotenv'
 
-# set :bind, '0.0.0.0'
-# set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
-
 Dotenv.load
+#This validates the X-Twilio-Signature header so only Twilio numbers can interact with these URLs
 use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phase1', '/phase1/start', '/phonebuzz', '/phonebuzz/start'
 
 client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
