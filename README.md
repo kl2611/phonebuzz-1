@@ -1,5 +1,5 @@
 # PhoneBuzz
-A Sinatra app using Ruby and TwiML to play FizzBuzz over the phone.
+A Sinatra app using Ruby, TwiML, and PostgreSQL database to play FizzBuzz over the phone.
 
 ##Setup
 To run this project locally, download the files and set three environment variables. Navigate to the root of the folder in terminal and type `touch .env`.
