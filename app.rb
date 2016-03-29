@@ -10,7 +10,7 @@ require 'dotenv'
 # set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 
 Dotenv.load
-use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phonebuzz', '/phonebuzz/start'
+use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phonebuzz/start'
 
 client = Twilio::REST::Client.new ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN']
 
