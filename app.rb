@@ -6,8 +6,8 @@ require './config/environments'
 require './models/post'
 require 'dotenv'
 
-set :bind, '0.0.0.0'
-set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
+# set :bind, '0.0.0.0'
+# set :port, ENV['TWILIO_STARTER_RUBY_PORT'] || 4567
 
 Dotenv.load
 use Rack::TwilioWebhookAuthentication, ENV['TWILIO_AUTH_TOKEN'], '/phonebuzz', '/phonebuzz/start'
